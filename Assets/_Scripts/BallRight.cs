@@ -27,7 +27,7 @@ public class BallRight : MonoBehaviour
                 Touch touch1 = Input.touches[0];
                 Vector3 pos1 = touch1.position;
 
-                if (pos1.x > 200 && touch1.phase == TouchPhase.Began)
+                if (pos1.x > 250 && pos1.y>25 && touch1.phase == TouchPhase.Began)
                     ball.sprite = black;
                 if (touch1.phase == TouchPhase.Ended)
                     ball.sprite = white;
@@ -35,7 +35,7 @@ public class BallRight : MonoBehaviour
                 Touch touch2 = Input.touches[1];
                 Vector3 pos2 = touch2.position;
 
-                if (pos2.x > 200 && touch2.phase == TouchPhase.Began)
+                if (pos2.x > 250 && pos2.y>50 && touch2.phase == TouchPhase.Began)
                     ball.sprite = black;
                 if (touch2.phase == TouchPhase.Ended)
                     ball.sprite = white;
@@ -68,22 +68,14 @@ public class BallRight : MonoBehaviour
         {
             collision.gameObject.GetComponent<Point>().speed = 0f;
             collision.gameObject.GetComponent<Animator>().SetTrigger("DestroyBlack");
-            StartCoroutine(WaitForTimeToStop(1f));
-            
+            GameManager.isGameOver = true;
         }
         if (ball.sprite == black &&
             collision.gameObject.tag == "WhitePoint")
         {
             collision.gameObject.GetComponent<Point>().speed = 0f;
             collision.gameObject.GetComponent<Animator>().SetTrigger("DestroyWhite");
-            StartCoroutine(WaitForTimeToStop(1f));
+            GameManager.isGameOver = true;
         }
-    }
-
-    IEnumerator WaitForTimeToStop(float time)
-    {
-        yield return new WaitForSeconds(time);
-
-        Time.timeScale = 0.0f;
     }
 }
