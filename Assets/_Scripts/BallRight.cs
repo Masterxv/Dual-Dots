@@ -25,17 +25,17 @@ public class BallRight : MonoBehaviour
             try
             {
                 Touch touch1 = Input.touches[0];
-                Vector3 pos1 = touch1.position;
+                Vector3 pos1 = Camera.main.ScreenToWorldPoint(touch1.position);
 
-                if (pos1.x > 250 && pos1.y>25 && touch1.phase == TouchPhase.Began)
+                if (pos1.x > 1f && pos1.y<0f && touch1.phase == TouchPhase.Began)
                     ball.sprite = black;
                 if (touch1.phase == TouchPhase.Ended)
                     ball.sprite = white;
 
                 Touch touch2 = Input.touches[1];
-                Vector3 pos2 = touch2.position;
+                Vector3 pos2 = Camera.main.ScreenToWorldPoint(touch2.position);
 
-                if (pos2.x > 250 && pos2.y>50 && touch2.phase == TouchPhase.Began)
+                if (pos2.x > 1f && pos1.y < 0f && touch2.phase == TouchPhase.Began)
                     ball.sprite = black;
                 if (touch2.phase == TouchPhase.Ended)
                     ball.sprite = white;
@@ -50,6 +50,7 @@ public class BallRight : MonoBehaviour
         if (ball.sprite == white &&
             collision.gameObject.tag == "WhitePoint")
         {
+            FindObjectOfType<AudioManager>().Play("PointScored");
             GameManager.score += 1;
             collision.gameObject.GetComponent<Animator>().SetTrigger("Shrink");
             Destroy(collision.gameObject, 1f);
@@ -57,6 +58,7 @@ public class BallRight : MonoBehaviour
         if (ball.sprite == black &&
             collision.gameObject.tag == "BlackPoint")
         {
+            FindObjectOfType<AudioManager>().Play("PointScored");
             GameManager.score += 1;
             collision.gameObject.GetComponent<Animator>().SetTrigger("Shrink");
             Destroy(collision.gameObject, 0.1f);
@@ -66,6 +68,7 @@ public class BallRight : MonoBehaviour
         if (ball.sprite == white &&
             collision.gameObject.tag == "BlackPoint")
         {
+            FindObjectOfType<AudioManager>().Play("Out");
             collision.gameObject.GetComponent<Point>().speed = 0f;
             collision.gameObject.GetComponent<Animator>().SetTrigger("DestroyBlack");
             GameManager.isGameOver = true;
@@ -73,6 +76,7 @@ public class BallRight : MonoBehaviour
         if (ball.sprite == black &&
             collision.gameObject.tag == "WhitePoint")
         {
+            FindObjectOfType<AudioManager>().Play("Out");
             collision.gameObject.GetComponent<Point>().speed = 0f;
             collision.gameObject.GetComponent<Animator>().SetTrigger("DestroyWhite");
             GameManager.isGameOver = true;

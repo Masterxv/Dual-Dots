@@ -68,23 +68,27 @@ public class GameManager : MonoBehaviour
     }
     public void Resume()
     {
+        FindObjectOfType<AudioManager>().Play("Click");
         PauseUI.SetActive(false);
         Time.timeScale = 1f;
         isGamePaused = false;
     }
     public void Restart()
     {
-        SceneManager.LoadScene(0);
+        FindObjectOfType<AudioManager>().Play("Click");
+        SceneManager.LoadScene(2);
         GameOverUI.SetActive(false);
         Time.timeScale = 1f;
     }
     public void MainMenu()
     {
+        FindObjectOfType<AudioManager>().Play("Click");
         SceneManager.LoadScene(1);
         Time.timeScale = 1f;
     }
     public void Exit()
     {
+        FindObjectOfType<AudioManager>().Play("Click");
         Application.Quit();
     }
 

@@ -62,11 +62,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_Scripts\AudioManager.cs" />
     <Compile Include="Assets\_Scripts\BallLeft.cs" />
     <Compile Include="Assets\_Scripts\BallRight.cs" />
+    <Compile Include="Assets\_Scripts\DonotDestroy.cs" />
     <Compile Include="Assets\_Scripts\GameManager.cs" />
+    <Compile Include="Assets\_Scripts\MainMenu.cs" />
     <Compile Include="Assets\_Scripts\Point.cs" />
+    <Compile Include="Assets\_Scripts\Sound.cs" />
     <Compile Include="Assets\_Scripts\Spawner.cs" />
+    <Compile Include="Assets\_Scripts\SplashScreen.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/Unity/Projects/Dual-Dots/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
